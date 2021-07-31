@@ -1,0 +1,9 @@
+*.elc
+*~
+
+/.persistent-scratch
+/places
+/recentf
+/savehist
+/straight/
+/transient/
