@@ -87,6 +87,7 @@
 
 ;;; Third party packages
 
+(straight-use-package 'orderless)
 (straight-use-package 'selectrum)
 (straight-use-package 'rg)
 (straight-use-package 'magit)
@@ -97,9 +98,12 @@
 (add-hook 'emacs-startup-hook #'selectrum-mode)
 
 (setq clojure-indent-style 'align-arguments
-      clojure-align-forms-automatically t)
+      clojure-align-forms-automatically t
+      orderless-skip-highlighting (lambda () selectrum-is-active)
+      selectrum-highlight-candidates-function #'orderless-highlight-matches)
 
 (custom-set-variables
+ '(completion-styles '(orderless))
  '(magit-diff-refine-hunk 'all)
  '(magit-display-buffer-function
    #'magit-display-buffer-same-window-except-diff-v1)
