@@ -51,7 +51,7 @@
  '(dired-dwim-target t)
  '(dired-recursive-copies 'always)
  '(dired-recursive-deletes 'always)
- '(savehist-file "~/emacs.d/savehist")
+ '(savehist-file "~/.emacs.d/savehist")
  '(savehist-save-minibuffer-history t)
  '(savehist-additional-variables '(kill-ring
 				   mark-ring
