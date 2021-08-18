@@ -13,7 +13,8 @@
       ring-bell-function #'ignore
       visible-bell nil
       ibuffer-expert t
-      ibuffer-show-empty-filter-groups nil)
+      ibuffer-show-empty-filter-groups nil
+      scroll-preserve-screen-position t)
 
 (setq-default delete-by-moving-to-trash t
 	      fill-column 80)
