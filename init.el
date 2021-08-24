@@ -1,3 +1,11 @@
+;;; init.el --- A minimal init.el  -*- lexical-binding: t; -*-
+
+
+;;; Commentary:
+;;
+
+;;; Code:
+
 (add-hook 'emacs-startup-hook
 	  (lambda ()
 	    (message "*** Emacs loaded in %s with %d garbage collections."
@@ -114,3 +122,7 @@
 
 (global-set-key (kbd "s-F") #'rg)
 (global-set-key (kbd "s-g") #'magit-status)
+
+(provide 'init)
+
+;;; init.el ends here
