@@ -64,7 +64,8 @@
 				   global-mark-ring
 				   search-ring
 				   regexp-search-ring))
- '(history-length 20000))
+ '(history-length 20000)
+ '(isearch-allow-scroll t))
 
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'super
