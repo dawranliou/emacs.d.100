@@ -14,7 +14,11 @@
       visible-bell nil
       ibuffer-expert t
       ibuffer-show-empty-filter-groups nil
-      scroll-preserve-screen-position t)
+      scroll-preserve-screen-position t
+      backup-directory-alist
+      (list (cons "." (expand-file-name "var/backup/" user-emacs-directory)))
+      auto-save-list-file-prefix
+      (expand-file-name "var/auto-save/" user-emacs-directory))
 
 (setq-default delete-by-moving-to-trash t
 	      fill-column 80)
