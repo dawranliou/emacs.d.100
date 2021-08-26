@@ -7,12 +7,10 @@
 ;;; Code:
 
 (add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (message "*** Emacs loaded in %s with %d garbage collections."
-		     (format "%.2f seconds"
-			     (float-time
-			      (time-subtract after-init-time before-init-time)))
-		     gcs-done)))
+          (lambda ()
+            (message "*** Emacs loaded in %.2f seconds with %d garbage collections."
+                     (float-time (time-subtract after-init-time before-init-time))
+                     gcs-done)))
 
 (setq inhibit-startup-message t
       gc-cons-threshold (* 100 1024 1024) ; 100mb
@@ -29,7 +27,7 @@
       (expand-file-name "var/auto-save/" user-emacs-directory))
 
 (setq-default delete-by-moving-to-trash t
-	      fill-column 80)
+              fill-column 80)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
@@ -50,6 +48,7 @@
 (add-hook 'emacs-startup-hook #'recentf-mode)
 (add-hook 'emacs-startup-hook #'savehist-mode)
 (add-hook 'emacs-startup-hook #'save-place-mode)
+(add-hook 'emacs-startup-hook #'fido-vertical-mode)
 
 (custom-set-variables
  '(recentf-max-saved-items 200)
@@ -60,17 +59,17 @@
  '(savehist-file "~/.emacs.d/savehist")
  '(savehist-save-minibuffer-history t)
  '(savehist-additional-variables '(kill-ring
-				   mark-ring
-				   global-mark-ring
-				   search-ring
-				   regexp-search-ring))
+                                   mark-ring
+                                   global-mark-ring
+                                   search-ring
+                                   regexp-search-ring))
  '(history-length 20000)
  '(isearch-allow-scroll t))
 
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'super
-	mac-option-modifier 'meta
-	insert-directory-program "gls")
+        mac-option-modifier 'meta
+        insert-directory-program "/usr/local/bin/gls")
   (custom-set-variables
    '(find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld"))))
 
@@ -85,32 +84,26 @@
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-	(url-retrieve-synchronously
-	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	 'silent 'inhibit-cookies)
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
 ;;; Third party packages
 
-(straight-use-package 'orderless)
-(straight-use-package 'selectrum)
 (straight-use-package 'rg)
 (straight-use-package 'magit)
 (straight-use-package 'clojure-mode)
 (straight-use-package 'cider)
 (straight-use-package 'org)
 
-(add-hook 'emacs-startup-hook #'selectrum-mode)
-
 (setq clojure-indent-style 'align-arguments
-      clojure-align-forms-automatically t
-      orderless-skip-highlighting (lambda () selectrum-is-active)
-      selectrum-highlight-candidates-function #'orderless-highlight-matches)
+      clojure-align-forms-automatically t)
 
 (custom-set-variables
- '(completion-styles '(orderless))
+ '(completion-styles '(partial-completion flex))
  '(magit-diff-refine-hunk 'all)
  '(magit-display-buffer-function
    #'magit-display-buffer-same-window-except-diff-v1)
