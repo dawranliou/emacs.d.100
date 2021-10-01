@@ -16,7 +16,7 @@
                 (horizontal-scroll-barr . nil)
                 (width                  . 90)
                 (height                 . 40)
-                (font                   . "Inconsolata-16")))
+                (font                   . "Iosevka Fixed-15")))
 
 (provide 'early-init)
 
