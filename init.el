@@ -16,10 +16,7 @@
  visible-bell nil
  delete-by-moving-to-trash t
  trash-directory "~/.Trash"
- ibuffer-expert t
- ibuffer-show-empty-filter-groups nil
  scroll-preserve-screen-position t
- show-paren-style 'expression
  backup-directory-alist
  (list (cons "." (expand-file-name "var/backup/" user-emacs-directory)))
  auto-save-list-file-prefix
@@ -35,17 +32,17 @@
 (put 'upcase-region 'disabled nil)
 
 
-(global-set-key (kbd "s-s") #'save-buffer)
-(global-set-key (kbd "s-q") #'save-buffers-kill-emacs)
-(global-set-key (kbd "C-x k" #'kill-this-buffer))
-(global-set-key (kbd "s-w") #'delete-window)
-(global-set-key (kbd "s-<backspace>") #'kill-whole-line)
-(global-set-key (kbd "C-x C-b") #'ibuffer)
-(global-set-key (kbd "s-p") #'project-find-file)
-(global-set-key (kbd "s-i") #'imenu)
 (global-set-key (kbd "C-M-r") #'raise-sexp)
-(global-set-key (kbd "M-o") #'other-window)
+(global-set-key (kbd "C-x C-b") #'ibuffer)
+(global-set-key (kbd "C-x k") #'kill-this-buffer)
 (global-set-key (kbd "M-i") #'delete-other-windows)
+(global-set-key (kbd "M-o") #'other-window)
+(global-set-key (kbd "s-<backspace>") #'kill-whole-line)
+(global-set-key (kbd "s-i") #'imenu)
+(global-set-key (kbd "s-p") #'project-find-file)
+(global-set-key (kbd "s-q") #'save-buffers-kill-emacs)
+(global-set-key (kbd "s-s") #'save-buffer)
+(global-set-key (kbd "s-w") #'delete-window)
 (global-set-key [remap downcase-word] #'downcase-dwim)
 (global-set-key [remap capitalize-word] #'capitalize-dwim)
 (global-set-key [remap upcase-word] #'upcase-dwim)
@@ -72,8 +69,6 @@
  '(cider-repl-use-pretty-printing t)
  '(cljr-magic-requires nil)
  '(completion-styles '(partial-completion flex))
- '(custom-safe-themes
-   '("03f28a4e25d3ce7e8826b0a67441826c744cbf47077fb5bc9ddb18afe115005f" default))
  '(dired-auto-revert-buffer t)
  '(dired-dwim-target t)
  '(dired-recursive-copies 'always)
