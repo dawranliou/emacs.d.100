@@ -7,6 +7,10 @@
 ;;; Code:
 
 
+(add-to-list 'exec-path "/usr/local/bin")
+(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+
+
 (setq
  inhibit-startup-message t
  gc-cons-threshold (* 100 1024 1024) ; 100mb
@@ -15,6 +19,9 @@
  ring-bell-function #'ignore
  visible-bell nil
  delete-by-moving-to-trash t
+ mac-command-modifier 'super
+ mac-option-modifier 'meta
+ insert-directory-program "/usr/local/bin/gls"
  trash-directory "~/.Trash"
  scroll-preserve-screen-position t
  backup-directory-alist
@@ -38,11 +45,7 @@
 (global-set-key (kbd "M-i") #'delete-other-windows)
 (global-set-key (kbd "M-o") #'other-window)
 (global-set-key (kbd "s-<backspace>") #'kill-whole-line)
-(global-set-key (kbd "s-i") #'imenu)
-(global-set-key (kbd "s-p") #'project-find-file)
 (global-set-key (kbd "s-q") #'save-buffers-kill-emacs)
-(global-set-key (kbd "s-s") #'save-buffer)
-(global-set-key (kbd "s-w") #'delete-window)
 (global-set-key [remap downcase-word] #'downcase-dwim)
 (global-set-key [remap capitalize-word] #'capitalize-dwim)
 (global-set-key [remap upcase-word] #'upcase-dwim)
@@ -79,19 +82,7 @@
  '(magit-diff-refine-hunk 'all)
  '(magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
  '(recentf-max-saved-items 200)
- '(savehist-additional-variables
-   '(kill-ring mark-ring global-mark-ring search-ring regexp-search-ring))
- '(savehist-file "~/.emacs.d/savehist")
  '(savehist-save-minibuffer-history t))
-
-
-(when (eq system-type 'darwin)
-  (add-to-list 'exec-path "/usr/local/bin")
-  (setq mac-command-modifier 'super
-        mac-option-modifier 'meta
-        insert-directory-program "/usr/local/bin/gls")
-  (custom-set-variables
-   '(find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld"))))
 
 
 ;;; Package manager
@@ -122,9 +113,12 @@
 (straight-use-package 'clojure-mode)
 (straight-use-package 'cider)
 (straight-use-package 'org)
+(straight-use-package 'slime)
+
+
+(setq inferior-lisp-program "sbcl")
 
 
 (provide 'init)
 
 ;;; init.el ends here
-
