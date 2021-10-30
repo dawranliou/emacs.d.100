@@ -4,6 +4,11 @@
 
 ;;; Code:
 
+
+(add-to-list 'exec-path "/usr/local/bin")
+(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+
+
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6
       package-enable-at-startup nil

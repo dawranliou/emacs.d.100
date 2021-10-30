@@ -7,10 +7,6 @@
 ;;; Code:
 
 
-(add-to-list 'exec-path "/usr/local/bin")
-(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
-
-
 (setq
  inhibit-startup-message t
  gc-cons-threshold (* 100 1024 1024) ; 100mb
